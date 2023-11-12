@@ -1,4 +1,3 @@
-
 CREATE TABLE t_subject (
     id bigserial not null,
     subject_name CHARACTER VARYING(30) CHECK(subject_name !='') UNIQUE NOT NULL,
@@ -19,16 +18,8 @@ CREATE TABLE t_subjects_plan (
     UNIQUE(id_plan, id_subject)
 );
 
-CREATE TABLE t_student (
-    id bigserial NOT NULL,
-    last_name CHARACTER VARYING(30) CHECK(last_name !='') NOT NULL,
-    first_name CHARACTER VARYING(30) CHECK(first_name !='') NOT NULL,
-    age int4 CHECK(age > 4 AND age < 18) NOT NULL,
-    CONSTRAINT pk_student_id PRIMARY KEY (id)
-);
-
-CREATE TABLE t_groups (
-    id bigserial NOT NULL,
+CREATE TABLE t_group (
+    id bigserial not null,
     group_name CHARACTER VARYING(30) CHECK(group_name !='') NOT NULL,
     id_plan int8 NOT NULL,
     CONSTRAINT pk_groups_id PRIMARY KEY (id),
@@ -36,11 +27,14 @@ CREATE TABLE t_groups (
     UNIQUE(group_name, id_plan)
 );
 
-CREATE TABLE t_group_of_students (
-    id_groups int8 NOT NULL,
-    id_student int8 UNIQUE NOT NULL,
-    CONSTRAINT fk_group_of_students_g_id FOREIGN KEY (id_groups) REFERENCES t_groups(id),
-    CONSTRAINT fk_group_of_students_s_id FOREIGN KEY (id_student) REFERENCES t_student(id) ON DELETE CASCADE
+CREATE TABLE t_student (
+    id bigserial NOT NULL,
+    last_name CHARACTER VARYING(30) CHECK(last_name !='') NOT NULL,
+    first_name CHARACTER VARYING(30) CHECK(first_name !='') NOT NULL,
+    age int4 CHECK(age > 4 AND age < 18) NOT NULL,
+    id_group int8,
+    CONSTRAINT pk_student_id PRIMARY KEY (id),
+    CONSTRAINT fk_student_id FOREIGN KEY (id_group) REFERENCES t_group(id) ON DELETE SET NULL
 );
 
 CREATE TABLE t_assessment (

@@ -10,7 +10,7 @@ import javax.persistence.*;
 @Setter
 @Accessors(chain = true)
 @Entity
-@Table(name = "t_groups")
+@Table(name = "t_group")
 public class Group {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,14 +19,13 @@ public class Group {
     @Column(name = "group_name", length = 30, nullable = false)
     private String groupName;
 
-    @ManyToOne
-    @JoinColumn(name = "id_plan", nullable = false)
-    private Plan plan;
+    @Column(name = "id_plan", nullable = false)
+    private Long plan;
 
     public Group() {
     }
 
-    public Group(String groupName, Plan plan) {
+    public Group(String groupName, Long plan) {
         this.groupName = groupName;
         this.plan = plan;
     }

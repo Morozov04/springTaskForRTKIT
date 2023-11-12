@@ -1,4 +1,5 @@
 package com.project.springTaskForRTKIT.entity;
+
 import lombok.*;
 import lombok.experimental.Accessors;
 
@@ -23,12 +24,16 @@ public class Student {
     @Column(name = "age", nullable = false)
     private Integer age;
 
+    @Column(name = "id_group")
+    private Long group;
+
     public Student() {
     }
 
-    public Student(String lastName, String firstName, Integer age) {
+    public Student(String lastName, String firstName, Integer age, Long group) {
         this.lastName = lastName;
         this.firstName = firstName;
         this.age = age;
+        this.group = group;
     }
 }

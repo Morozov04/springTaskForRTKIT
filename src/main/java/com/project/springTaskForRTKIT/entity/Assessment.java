@@ -12,13 +12,11 @@ import javax.persistence.*;
 @Embeddable
 @Table(name = "t_assessment")
 public class Assessment {
-    @ManyToOne
-    @JoinColumn(name = "id_student", nullable = false)
-    private Student student;
+    @Column(name = "id_student", nullable = false)
+    private Long student;
 
-    @ManyToOne
-    @JoinColumn(name = "id_subject", nullable = false)
-    private Subject subject;
+    @Column(name = "id_subject", nullable = false)
+    private Long subject;
 
     @Column(name = "assessment", nullable = false)
     private Integer assessment;
@@ -26,7 +24,7 @@ public class Assessment {
     public Assessment() {
     }
 
-    public Assessment(Student student, Subject subject, Integer assessment) {
+    public Assessment(Long student, Long subject, Integer assessment) {
         this.student = student;
         this.subject = subject;
         this.assessment = assessment;

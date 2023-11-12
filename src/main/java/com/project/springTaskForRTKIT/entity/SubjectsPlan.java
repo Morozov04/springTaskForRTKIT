@@ -12,18 +12,16 @@ import javax.persistence.*;
 @Embeddable
 @Table(name = "t_subjects_plan")
 public class SubjectsPlan {
-    @ManyToOne
-    @JoinColumn(name = "id_plan", nullable = false)
-    private Plan plan;
+    @Column(name = "id_plan", nullable = false)
+    private Long plan;
 
-    @ManyToOne
-    @JoinColumn(name = "id_subject", nullable = false)
-    private Subject subject;
+    @Column(name = "id_subject", nullable = false)
+    private Long subject;
 
     public SubjectsPlan() {
     }
 
-    public SubjectsPlan(Plan plan, Subject subject) {
+    public SubjectsPlan(Long plan, Long subject) {
         this.plan = plan;
         this.subject = subject;
     }

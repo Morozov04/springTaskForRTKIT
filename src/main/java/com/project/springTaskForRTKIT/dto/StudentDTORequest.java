@@ -7,7 +7,7 @@ import lombok.experimental.Accessors;
 @Getter
 @Setter
 @Accessors(chain = true)
-public class StudentDTO {
+public class StudentDTORequest {
     private String lastName;
     private String firstName;
     private Integer age;
