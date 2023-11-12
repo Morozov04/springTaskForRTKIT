@@ -3,17 +3,18 @@ package com.project.springTaskForRTKIT.service.impl;
 import com.project.springTaskForRTKIT.dto.StudentDTORequest;
 import com.project.springTaskForRTKIT.dto.StudentDTOResponse;
 import com.project.springTaskForRTKIT.entity.Student;
-import com.project.springTaskForRTKIT.mapper.StudentDTOMapperRequest;
 import com.project.springTaskForRTKIT.mapper.StudentDTOMapperResponse;
 import com.project.springTaskForRTKIT.repository.StudentRepository;
 import com.project.springTaskForRTKIT.service.StudentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@Transactional
 @RequiredArgsConstructor
 public class StudentServiceImpl implements StudentService {
 

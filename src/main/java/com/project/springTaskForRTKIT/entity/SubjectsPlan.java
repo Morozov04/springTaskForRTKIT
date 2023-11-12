@@ -9,9 +9,13 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Accessors(chain = true)
-@Embeddable
+@Entity
 @Table(name = "t_subjects_plan")
 public class SubjectsPlan {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     @Column(name = "id_plan", nullable = false)
     private Long plan;
 

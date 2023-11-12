@@ -17,7 +17,7 @@ INSERT INTO t_subjects_plan (id_plan, id_subject)
             (1, 5),
             (1, 6);
 
-INSERT INTO t_groups (id, group_name, id_plan)
+INSERT INTO t_group (id, group_name, id_plan)
      VALUES (1, '1', 1),
             (2, '2', 1),
             (3, '3', 1),

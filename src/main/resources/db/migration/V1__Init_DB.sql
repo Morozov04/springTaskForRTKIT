@@ -1,25 +1,27 @@
 CREATE TABLE t_subject (
-    id bigserial not null,
+    id bigserial NOT NULL,
     subject_name CHARACTER VARYING(30) CHECK(subject_name !='') UNIQUE NOT NULL,
     CONSTRAINT pk_subject_id PRIMARY KEY (id)
 );
 
 CREATE TABLE t_plan (
-    id bigserial not null,
+    id bigserial NOT NULL,
     plan_name CHARACTER VARYING(30) CHECK(plan_name !='') UNIQUE NOT NULL,
     CONSTRAINT pk_plan_id PRIMARY KEY (id)
 );
 
 CREATE TABLE t_subjects_plan (
+    id bigserial NOT NULL,
     id_plan int8 NOT NULL,
     id_subject int8 NOT NULL,
+    CONSTRAINT pk_subjects_plan_id PRIMARY KEY (id),
     CONSTRAINT fk_subjects_plan_p_id FOREIGN KEY (id_plan) REFERENCES t_plan(id) ON DELETE CASCADE,
     CONSTRAINT fk_subjects_plan_s_id FOREIGN KEY (id_subject) REFERENCES t_subject(id),
     UNIQUE(id_plan, id_subject)
 );
 
 CREATE TABLE t_group (
-    id bigserial not null,
+    id bigserial NOT NULL,
     group_name CHARACTER VARYING(30) CHECK(group_name !='') NOT NULL,
     id_plan int8 NOT NULL,
     CONSTRAINT pk_groups_id PRIMARY KEY (id),
@@ -38,9 +40,11 @@ CREATE TABLE t_student (
 );
 
 CREATE TABLE t_assessment (
+    id bigserial NOT NULL,
     id_student int8 NOT NULL,
     id_subject int8 NOT NULL,
     assessment int4 CHECK(assessment > 0 AND assessment < 6) NOT NULL,
+    CONSTRAINT pk_assessment_id PRIMARY KEY (id),
     CONSTRAINT fk_assessment_std_id FOREIGN KEY (id_student) REFERENCES t_student(id) ON DELETE CASCADE,
     CONSTRAINT fk_assessment_sud_id FOREIGN KEY (id_subject) REFERENCES t_subject(id),
     UNIQUE(id_student, id_subject)
