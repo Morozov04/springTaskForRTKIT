@@ -19,13 +19,14 @@ public class Group {
     @Column(name = "group_name", length = 30, nullable = false)
     private String groupName;
 
-    @Column(name = "id_plan", nullable = false)
-    private Long plan;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_plan", nullable = false)
+    private Plan plan;
 
     public Group() {
     }
 
-    public Group(String groupName, Long plan) {
+    public Group(String groupName, Plan plan) {
         this.groupName = groupName;
         this.plan = plan;
     }

@@ -16,16 +16,18 @@ public class SubjectsPlan {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "id_plan", nullable = false)
-    private Long plan;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_plan", nullable = false)
+    private Plan plan;
 
-    @Column(name = "id_subject", nullable = false)
-    private Long subject;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_subject", nullable = false)
+    private Subject subject;
 
     public SubjectsPlan() {
     }
 
-    public SubjectsPlan(Long plan, Long subject) {
+    public SubjectsPlan(Plan plan, Subject subject) {
         this.plan = plan;
         this.subject = subject;
     }

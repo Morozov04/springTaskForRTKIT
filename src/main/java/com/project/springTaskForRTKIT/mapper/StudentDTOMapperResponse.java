@@ -15,6 +15,6 @@ public class StudentDTOMapperResponse implements Function<Student, StudentDTORes
                 .setLastName(student.getLastName())
                 .setFirstName(student.getFirstName())
                 .setAge(student.getAge())
-                .setGroup(student.getGroup());
+                .setGroup(student.getGroup() != null ? student.getGroup().getId() : null);
     }
 }

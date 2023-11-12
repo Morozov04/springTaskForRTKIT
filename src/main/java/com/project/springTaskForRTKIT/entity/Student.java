@@ -24,13 +24,14 @@ public class Student {
     @Column(name = "age", nullable = false)
     private Integer age;
 
-    @Column(name = "id_group")
-    private Long group;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_group", nullable = false)
+    private Group group;
 
     public Student() {
     }
 
-    public Student(String lastName, String firstName, Integer age, Long group) {
+    public Student(String lastName, String firstName, Integer age, Group group) {
         this.lastName = lastName;
         this.firstName = firstName;
         this.age = age;

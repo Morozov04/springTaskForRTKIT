@@ -16,11 +16,13 @@ public class Assessment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "id_student", nullable = false)
-    private Long student;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_student", nullable = false)
+    private Student student;
 
-    @Column(name = "id_subject", nullable = false)
-    private Long subject;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_subject", nullable = false)
+    private Subject subject;
 
     @Column(name = "assessment", nullable = false)
     private Integer assessment;
@@ -28,7 +30,7 @@ public class Assessment {
     public Assessment() {
     }
 
-    public Assessment(Long student, Long subject, Integer assessment) {
+    public Assessment(Student student, Subject subject, Integer assessment) {
         this.student = student;
         this.subject = subject;
         this.assessment = assessment;
