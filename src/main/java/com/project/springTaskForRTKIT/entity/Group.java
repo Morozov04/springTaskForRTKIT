@@ -5,6 +5,7 @@ import lombok.Setter;
 import lombok.experimental.Accessors;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Getter
 @Setter
@@ -14,11 +15,14 @@ import javax.persistence.*;
 public class Group {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @NotNull
     private Long id;
 
+    @NotNull
     @Column(name = "group_name", length = 30, nullable = false)
     private String groupName;
 
+    @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_plan", nullable = false)
     private Plan plan;

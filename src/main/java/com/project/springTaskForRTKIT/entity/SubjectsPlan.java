@@ -5,6 +5,7 @@ import lombok.Setter;
 import lombok.experimental.Accessors;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Getter
 @Setter
@@ -14,12 +15,15 @@ import javax.persistence.*;
 public class SubjectsPlan {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @NotNull
     private Long id;
 
+    @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_plan", nullable = false)
     private Plan plan;
 
+    @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_subject", nullable = false)
     private Subject subject;

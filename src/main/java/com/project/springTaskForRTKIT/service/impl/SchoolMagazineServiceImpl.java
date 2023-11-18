@@ -1,25 +1,25 @@
 package com.project.springTaskForRTKIT.service.impl;
 
+import com.project.springTaskForRTKIT.dto.AssessmentDTORequest;
 import com.project.springTaskForRTKIT.dto.StudentDTOResponse;
 import com.project.springTaskForRTKIT.entity.Assessment;
 import com.project.springTaskForRTKIT.mapper.StudentDTOMapperResponse;
 import com.project.springTaskForRTKIT.repository.AssessmentRepository;
 import com.project.springTaskForRTKIT.repository.GroupRepository;
 import com.project.springTaskForRTKIT.repository.StudentRepository;
-import com.project.springTaskForRTKIT.service.AssessmentService;
-import com.project.springTaskForRTKIT.service.GroupService;
-import com.project.springTaskForRTKIT.service.StudentService;
+import com.project.springTaskForRTKIT.service.SchoolMagazineService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
 @Transactional
 @RequiredArgsConstructor
-public class ServiceImpl implements StudentService, AssessmentService, GroupService {
+public class SchoolMagazineServiceImpl implements SchoolMagazineService {
 
     private final GroupRepository groupRepository;
     private final StudentRepository studentRepository;
@@ -55,12 +55,12 @@ public class ServiceImpl implements StudentService, AssessmentService, GroupServ
     }
 
     @Override
-    public List<Object[]> getAverageAssessmentsByClassNumber(Long id_groups) {
+    public List<Map<Integer, Double>> getAverageAssessmentsByClassNumber(Long id_groups) {
         return assessmentRepository.getAverageAssessmentsByClassNumber(id_groups);
     }
 
     @Override
-    public void updateAssessment(Long id_groups, Long id_student, String name_sub, Integer assessment) {
+    public void updateAssessment(Long id_groups, Long id_student, String name_sub, AssessmentDTORequest assessment) {
         Assessment newAssessment = assessmentRepository
                 .findById(assessmentRepository.getNameSubject(name_sub, id_student))
                 .orElseThrow(() -> new RuntimeException("such subject does not exist"));
@@ -71,13 +71,13 @@ public class ServiceImpl implements StudentService, AssessmentService, GroupServ
 
         boolean changes = false;
 
-        if (!assessment.equals(newAssessment.getAssessment())){
-            newAssessment.setAssessment(assessment);
+        if (!assessment.getAssessment().equals(newAssessment.getAssessment())){
+            newAssessment.setAssessment(assessment.getAssessment());
             changes = true;
         }
 
         if (!changes) {
-            throw new RuntimeException("no data changes found");
+            System.out.println("no data changes found");
         }
         assessmentRepository.save(newAssessment);
     }

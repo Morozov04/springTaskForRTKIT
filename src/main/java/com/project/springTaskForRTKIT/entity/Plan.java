@@ -5,6 +5,7 @@ import lombok.Setter;
 import lombok.experimental.Accessors;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Getter
 @Setter
@@ -14,8 +15,10 @@ import javax.persistence.*;
 public class Plan {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @NotNull
     private Long id;
 
+    @NotNull
     @Column(name = "plan_name", length = 30, nullable = false, unique = true)
     private String planName;
 
